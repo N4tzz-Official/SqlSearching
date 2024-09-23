@@ -32,14 +32,6 @@ def validate_url(url):
     parsed = urlparse(url)
     return bool(parsed.scheme and parsed.netloc)
 
-def display_parameters(params):
-    if params:
-        print(WHITE + "\nURI Parameters Found:")
-        for key, value in params.items():
-            print(f"{key}: {value}")
-    else:
-        print(WHITE + "\nNo URI parameters found.")
-
 def main():
     print_banner()
     
@@ -50,12 +42,15 @@ def main():
             print(RED + "Invalid URL! Please enter a valid URL." + RESET)
             continue
         
-        print(CYAN + "N4tzz-Owner Searching URI Parameters!!" + RESET)
+        print(CYAN + "N4tzz-Squad Searching URI Parameters!!" + RESET)
         params = get_uri_parameters(url)
-        display_parameters(params)
-
-        print(GREEN + "\nSearch process completed." + RESET)
-        print(BLUE + "Thank you for using this program!" + RESET)
+        
+        if params:
+            print(WHITE + f"\nURI Parameters Found for URL: {url}")
+            for key, value in params.items():
+                print(f"{key}: {value}")
+        else:
+            print(WHITE + f"\nNo URI parameters found for URL: {url}")
 
         repeat = input(YELLOW + "Would you like to search another URL? (yes/no): " + RESET).lower()
         if repeat != 'yes':
